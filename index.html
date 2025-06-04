@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <title>Logic Gate Simulator</title>
+</head>
+<body>
+
+<!-- Left Sidebar -->
+<div id="leftPanel" class="sidebar left open">
+  <button class="toggle-btn" id="toggleLeft">&laquo;</button>
+  <h3>Verilog-Vision</h3>
+  <div class="gate-item" draggable="true" data-type="INPUT">INPUT</div>
+  <div class="gate-item" draggable="true" data-type="AND">AND</div>
+  <div class="gate-item" draggable="true" data-type="OR">OR</div>
+  <div class="gate-item" draggable="true" data-type="NOT">NOT</div>
+  <div class="gate-item" draggable="true" data-type="NAND">NAND</div>
+  <div class="gate-item" draggable="true" data-type="NOR">NOR</div>
+  <div class="gate-item" draggable="true" data-type="XOR">XOR</div>
+  <p>Tick the checkbox to designate it as an output</p>
+
+  <hr />
+  <button onclick="undo()" style="background-color: red;">Undo</button>
+  <button onclick="redo()" style="background-color: green;">Redo</button>
+  <button id="clearBtn">Clear</button>
+  <button id="generateBtn">Generate Verilog</button>
+  <!-- <div style="display: flex; gap: 10px; margin-top: 10px;">
+  <button onclick="undo()" style="background-color: red; color: white;">Undo</button>
+  <button onclick="redo()" style="background-color: green; color: white;">Redo</button>
+</div> -->
+  <div id="gateCount">Gates: <span id="gateCountText">0</span></div>
+</div>
+
+<!-- Description area shown when left sidebar is closed -->
+
+<div id="leftInfo" class="left-info hidden">
+  <div class="info-box">
+    <h2>Welcome to Verilog-Vision 👋</h2>
+    <p>
+      Verilog-Vision is a visual logic circuit simulator designed to make digital design easier and more interactive.
+    </p>
+    <ul>
+      <li>🔌 Drag and drop logic gates onto the canvas</li>
+      <li>⚙️ Connect gates by drawing wires</li>
+      <li>🧠 Define inputs and mark outputs</li>
+      <li>📄 Generate real-time Verilog code for your circuit</li>
+      <li>💾 Download your Verilog design for synthesis or simulation</li>
+    </ul>
+    <p style="margin-top: 10px; font-style: italic;">
+      Click the <strong>&raquo;</strong> arrow again to open the gate toolbox.
+    </p>
+  </div>
+</div>
+
+
+
+<!-- Main Canvas Area -->
+<div id="canvas" class="grid"></div>
+<svg id="wireLayer"></svg>
+
+<!-- Right Sidebar -->
+<div id="rightPanel" class="sidebar right">
+  <button class="toggle-btn" id="toggleRight">&raquo;</button>
+  <h3> <p> </p> Verilog Output</h3>
+  <textarea id="verilogOutput"></textarea>
+  <button onclick="downloadVerilog()">Download Verilog</button>
+</div>
+<script>
+  // Sidebar toggle buttons
+// document.getElementById('toggleLeft').addEventListener('click', () => {
+//   document.getElementById('leftPanel').classList.toggle('closed');
+// });
+
+document.getElementById('toggleLeft').addEventListener('click', () => {
+  const panel = document.getElementById('leftPanel');
+  const button = document.getElementById('toggleLeft');
+  const info = document.getElementById('leftInfo');
+
+  panel.classList.toggle('closed');
+  const isClosed = panel.classList.contains('closed');
+  button.innerHTML = isClosed ? '&raquo;' : '&laquo;';
+  info.classList.toggle('visible', isClosed);
+  info.classList.toggle('hidden', !isClosed);
+
+  // Move arrow left when sidebar is closed
+  button.classList.toggle('shifted', isClosed);
+});
+
+
+// document.getElementById('toggleRight').addEventListener('click', () => {
+//   document.getElementById('rightPanel').classList.toggle('closed');
+// });
+
+document.getElementById('toggleRight').addEventListener('click', () => {
+  const panel = document.getElementById('rightPanel');
+  const button = document.getElementById('toggleRight');
+
+  panel.classList.toggle('closed');
+  const isClosed = panel.classList.contains('closed');
+  button.innerHTML = isClosed ? '&laquo;' : '&raquo;';
+  button.classList.toggle('shifted', isClosed); // Add this line
+});
+
+
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>
