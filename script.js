@@ -519,3 +519,19 @@ saveState();
 
   // Call refreshInputNodeAttributes whenever gates added or moved (we call after adding gate)
   // Note: done inside addGate
+
+
+
+  function toggleMobilePanel(side) {
+    const left = document.getElementById('leftPanel');
+    const right = document.getElementById('rightPanel');
+
+    if (side === 'left') {
+      left.classList.toggle('open');
+      right.classList.remove('open');
+    } else if (side === 'right') {
+      right.classList.toggle('open');
+      left.classList.remove('open');
+    }
+  }
+
