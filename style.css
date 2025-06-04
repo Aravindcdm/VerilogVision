@@ -314,3 +314,112 @@ textarea#verilogOutput {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Mobile View Adjustments */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+
+  /* Sidebars take full width on mobile */
+  .sidebar.left,
+  .sidebar.right {
+    position: relative;
+    width: 100%;
+    transform: translateX(0) !important;
+    border: none;
+    padding: 10px;
+  }
+
+  .sidebar.left.closed,
+  .sidebar.right.closed {
+    display: none;
+  }
+
+  /* Toggle Buttons */
+  #toggleLeft,
+  #toggleRight {
+    top: 5px;
+    left: auto;
+    right: 10px;
+    z-index: 20;
+  }
+
+  #toggleLeft.shifted,
+  #toggleRight.shifted {
+    left: auto;
+    right: 10px;
+  }
+
+  /* Canvas should expand fully */
+  #canvas {
+    flex: 1;
+    height: 60vh;
+  }
+
+  /* Gate items in a grid for better tap access */
+  .gate-item {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  /* Verilog output area */
+  #verilogOutput {
+    height: 200px;
+    font-size: 12px;
+  }
+
+  /* Info box styling */
+  .left-info {
+    width: 100%;
+    height: auto;
+    top: auto;
+    position: relative;
+    border-right: none;
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+  }
+
+  .info-box {
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  /* Buttons layout */
+  button {
+    width: 100%;
+    margin: 6px 0;
+  }
+}
