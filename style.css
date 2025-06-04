@@ -334,6 +334,92 @@ textarea#verilogOutput {
 
 
 
+@media (max-width: 768px) {
+  /* Adjust layout */
+  body {
+    flex-direction: column;
+  }
+
+  /* Shrink left sidebar */
+  #leftPanel,
+  .sidebar.left,
+  .left-info {
+    width: 100px;
+    padding: 6px;
+  }
+
+  .left-info {
+    top: 0;
+    height: auto;
+  }
+
+  /* Gate Items */
+  .gate-item {
+    font-size: 12px;
+    padding: 4px 6px;
+    margin: 6px 0;
+  }
+
+  /* Gate on canvas */
+  .gate {
+    width: 80px;
+    height: 50px;
+  }
+
+  .gate-label {
+    font-size: 12px;
+  }
+
+  /* Node dots */
+  .node {
+    width: 10px;
+    height: 10px;
+    margin: 4px 2px;
+  }
+
+  /* Buttons */
+  button {
+    padding: 6px 10px;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  /* Toggle Buttons */
+  .toggle-btn {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+  }
+
+  /* Verilog Output Area */
+  textarea#verilogOutput {
+    font-size: 12px;
+  }
+
+  /* Info box */
+  .info-box {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .info-box h2 {
+    font-size: 16px;
+  }
+
+  .info-box ul li {
+    font-size: 12px;
+  }
+
+  /* Gate Count */
+  #gateCount {
+    font-size: 12px;
+  }
+
+  /* Output toggle checkbox label */
+  .output-toggle {
+    font-size: 9px;
+  }
+}
 
 
 
