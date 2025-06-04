@@ -346,80 +346,123 @@ textarea#verilogOutput {
 
 
 
-
-/* Mobile View Adjustments */
-@media (max-width: 768px) {
+/* Responsive Layout - General Reset for Flex Containers */
+@media (max-width: 1024px) {
   body {
     flex-direction: column;
   }
 
-  /* Sidebars take full width on mobile */
   .sidebar.left,
   .sidebar.right {
-    position: relative;
     width: 100%;
+    position: relative;
     transform: translateX(0) !important;
     border: none;
-    padding: 10px;
+    border-bottom: 1px solid #ccc;
   }
 
   .sidebar.left.closed,
   .sidebar.right.closed {
-    display: none;
+    display: none !important;
   }
 
-  /* Toggle Buttons */
-  #toggleLeft,
-  #toggleRight {
-    top: 5px;
-    left: auto;
-    right: 10px;
-    z-index: 20;
-  }
-
-  #toggleLeft.shifted,
-  #toggleRight.shifted {
-    left: auto;
-    right: 10px;
-  }
-
-  /* Canvas should expand fully */
   #canvas {
-    flex: 1;
     height: 60vh;
+    min-height: 300px;
   }
 
-  /* Gate items in a grid for better tap access */
+  #verilogOutput {
+    height: 200px;
+  }
+
+  button {
+    width: 100%;
+    margin: 8px 0;
+  }
+
   .gate-item {
     font-size: 16px;
     padding: 10px;
   }
 
-  /* Verilog output area */
-  #verilogOutput {
-    height: 200px;
-    font-size: 12px;
-  }
-
-  /* Info box styling */
   .left-info {
     width: 100%;
     height: auto;
     top: auto;
     position: relative;
-    border-right: none;
-    border-top: 1px solid #ccc;
     margin-top: 10px;
-  }
-
-  .info-box {
-    font-size: 13px;
-    padding: 12px;
-  }
-
-  /* Buttons layout */
-  button {
-    width: 100%;
-    margin: 6px 0;
+    border-top: 1px solid #ccc;
+    border-right: none;
   }
 }
+
+/* Mobile-specific Tweaks */
+@media (max-width: 600px) {
+  .info-box {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .toggle-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    top: 5px;
+    right: 8px;
+  }
+
+  #toggleLeft,
+  #toggleRight {
+    left: auto;
+    right: 8px;
+  }
+
+  #canvas.grid {
+    background-size: 15px 15px;
+  }
+
+  .gate {
+    width: 80px;
+    height: 50px;
+  }
+
+  .gate-label {
+    font-size: 12px;
+  }
+
+  .node {
+    width: 10px;
+    height: 10px;
+  }
+
+  textarea#verilogOutput {
+    font-size: 12px;
+    height: 180px;
+  }
+}
+
+/* Extra small screens (landscape phones) */
+@media (max-width: 420px) {
+  .gate-item {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .info-box h2 {
+    font-size: 16px;
+  }
+
+  .info-box ul li {
+    font-size: 13px;
+  }
+
+  button {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+
+  .toggle-btn {
+    font-size: 16px;
+  }
+}
+
