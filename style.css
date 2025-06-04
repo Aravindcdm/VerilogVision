@@ -345,85 +345,84 @@ textarea#verilogOutput {
 
 
 
-
-/* Responsive Layout - General Reset for Flex Containers */
-@media (max-width: 1024px) {
+/* Mobile-first sidebar behavior */
+@media (max-width: 768px) {
   body {
     flex-direction: column;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border: none;
+    transform: translateX(0) !important;
+    box-shadow: none;
+    padding: 12px;
   }
 
   .sidebar.left,
   .sidebar.right {
-    width: 100%;
-    position: relative;
-    transform: translateX(0) !important;
-    border: none;
-    border-bottom: 1px solid #ccc;
+    display: none;
   }
 
-  .sidebar.left.closed,
-  .sidebar.right.closed {
-    display: none !important;
+  .sidebar.left.open,
+  .sidebar.right.open {
+    display: block;
   }
 
   #canvas {
-    height: 60vh;
+    height: 400px;
     min-height: 300px;
+    order: 2;
   }
 
-  #verilogOutput {
-    height: 200px;
+  #wireLayer {
+    top: 0;
+    left: 0;
   }
 
-  button {
-    width: 100%;
-    margin: 8px 0;
+  .toggle-btn {
+    position: relative;
+    width: auto;
+    padding: 6px 12px;
+    margin: 8px;
+    top: auto;
+    left: auto;
+    right: auto;
+    font-size: 14px;
+    display: inline-block;
   }
 
-  .gate-item {
-    font-size: 16px;
+  .mobile-toggle-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f0f0f0;
     padding: 10px;
+    border-bottom: 1px solid #ccc;
+    order: 1;
   }
 
   .left-info {
     width: 100%;
-    height: auto;
-    top: auto;
     position: relative;
-    margin-top: 10px;
+    padding: 15px;
+    background: #fff;
     border-top: 1px solid #ccc;
     border-right: none;
+    margin-top: 0;
   }
-}
 
-/* Mobile-specific Tweaks */
-@media (max-width: 600px) {
-  .info-box {
-    padding: 12px;
+  textarea#verilogOutput {
+    height: 200px;
     font-size: 13px;
   }
 
-  .toggle-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 18px;
-    top: 5px;
-    right: 8px;
-  }
-
-  #toggleLeft,
-  #toggleRight {
-    left: auto;
-    right: 8px;
-  }
-
-  #canvas.grid {
-    background-size: 15px 15px;
-  }
-
   .gate {
-    width: 80px;
-    height: 50px;
+    width: 90px;
+    height: 55px;
   }
 
   .gate-label {
@@ -434,35 +433,4 @@ textarea#verilogOutput {
     width: 10px;
     height: 10px;
   }
-
-  textarea#verilogOutput {
-    font-size: 12px;
-    height: 180px;
-  }
 }
-
-/* Extra small screens (landscape phones) */
-@media (max-width: 420px) {
-  .gate-item {
-    font-size: 14px;
-    padding: 8px;
-  }
-
-  .info-box h2 {
-    font-size: 16px;
-  }
-
-  .info-box ul li {
-    font-size: 13px;
-  }
-
-  button {
-    font-size: 13px;
-    padding: 6px 10px;
-  }
-
-  .toggle-btn {
-    font-size: 16px;
-  }
-}
-
