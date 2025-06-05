@@ -394,3 +394,70 @@ textarea#verilogOutput {
 
 }
 
+
+
+
+/* Landscape Mode  */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  body {
+    /* Allow horizontal scrolling prevention */
+    overflow-x: hidden;
+    /* Optional: if you want to stack sidebars in narrow landscape */
+    flex-wrap: nowrap; /* or wrap if you want stacked layout */
+  }
+
+  /* Reduce sidebar widths further */
+  #leftPanel,
+  .sidebar.left,
+  .left-info {
+    width: 80px;
+    min-width: 80px;
+    padding: 4px 6px;
+  }
+
+  .sidebar.right {
+    width: 150px; /* smaller right sidebar */
+  }
+
+  /* Also reduce toggle buttons accordingly */
+  #toggleLeft {
+    right: -10px;
+  }
+  #toggleLeft.shifted {
+    right: -20px;
+  }
+
+  #toggleRight {
+    left: -10px;
+  }
+  #toggleRight.shifted {
+    left: -20px;
+  }
+
+  /* Shrink gates further if needed */
+  .gate {
+    width: 60px;
+    height: 36px;
+    font-size: 10px;
+  }
+
+  .node {
+    width: 8px;
+    height: 8px;
+  }
+
+  .node.input {
+    left: -4px;
+    top: 50%;
+    transform: translateY(calc(-50% - 3px)); /* adjust as needed */
+  }
+
+  .node.output {
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+
