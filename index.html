@@ -22,8 +22,8 @@
   <p>Tick the checkbox to designate it as an output</p>
 
   <hr />
-  <button onclick="undo()" style="background-color: red;">Undo</button>
-  <button onclick="redo()" style="background-color: green;">Redo</button>
+  <button onclick="undo()" style="background-color: red;">Undo &#10554;</button>
+  <button onclick="redo()" style="background-color: green;">Redo &#10555;</button>
   <button id="clearBtn">Clear</button>
   <button id="generateBtn">Generate Verilog</button>
   <!-- <div style="display: flex; gap: 10px; margin-top: 10px;">
@@ -76,7 +76,7 @@
   </div>
   
   <textarea id="verilogOutput"></textarea>
-  <button onclick="downloadVerilog()">Download Verilog</button>
+  <button onclick="downloadVerilog()">Download Verilog &#11123;</button>
 </div>
 <script>
   // Sidebar toggle buttons
@@ -127,6 +127,13 @@ document.getElementById('copyBtn').addEventListener('click', () => {
 
 </script>
 <script src="script.js"></script>
+  <!-- Footer -->
+<!-- <footer style="text-align: center; padding: 10px; background-color: #f2f2f2; position: fixed; bottom: 0; width: 100%; font-size: 14px;">
+  &copy; 2025 Verilog-Vision. All rights reserved.
+</footer> -->
+<footer style="text-align: center; padding: 10px; background-color: #f2f2f2; position: fixed; bottom: 0; width: 100%; font-size: 14px;">
+  &copy; 2025 Verilog-Vision. By <a href="https://www.linkedin.com/in/aravindcdm/" target="_blank" style="text-decoration: none; color: ;">Aravind Chidambaram</a>
+</footer>
 </body>
 
 
