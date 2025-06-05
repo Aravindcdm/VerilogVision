@@ -63,7 +63,18 @@
 <!-- Right Sidebar -->
 <div id="rightPanel" class="sidebar right">
   <button class="toggle-btn" id="toggleRight">&raquo;</button>
-  <h3> <p> </p> Verilog Output</h3>
+  <p> </p>
+  <div class="verilog-header">
+    <h3>Verilog Output</h3>
+    <button id="copyBtn" title="Copy Verilog" aria-label="Copy Verilog">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" 
+       stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" width="16" height="16" style="vertical-align: middle; margin-left: 6px;">
+    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+  </svg>
+</button>
+  </div>
+  
   <textarea id="verilogOutput"></textarea>
   <button onclick="downloadVerilog()">Download Verilog</button>
 </div>
@@ -103,7 +114,16 @@ document.getElementById('toggleRight').addEventListener('click', () => {
   button.classList.toggle('shifted', isClosed); // Add this line
 });
 
-
+document.getElementById('copyBtn').addEventListener('click', () => {
+  const verilogText = document.getElementById('verilogOutput').value;
+  
+  // Copy to clipboard using modern API
+  navigator.clipboard.writeText(verilogText).then(() => {
+    alert('Verilog code copied to clipboard!');
+  }).catch(() => {
+    alert('Failed to copy! Please copy manually.');
+  });
+});
 
 </script>
 <script src="script.js"></script>
