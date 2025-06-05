@@ -304,6 +304,33 @@ textarea#verilogOutput {
 
 
 
+.verilog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.verilog-header h3 {
+  margin: 0;
+  /* font-weight: normal; */
+}
+
+#copyBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0 6px;
+  color: #0078d7;
+  transition: color 0.3s ease;
+}
+
+#copyBtn:hover {
+  color: #005fa3;
+}
+
+
 
 
 
