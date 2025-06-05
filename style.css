@@ -356,3 +356,41 @@ textarea#verilogOutput {
     right: -24px;
   }
 }
+
+
+
+
+@media (max-width: 768px) {
+  .gate {
+    width: 70px;
+    height: 42px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .gate-label {
+    margin: 3px 0 0;
+    font-size: 12px;
+  }
+
+  .node {
+    width: 10px;
+    height: 10px;
+    margin: 0; /* reset margin for better control */
+  }
+
+  /* Center nodes vertically based on smaller gate height */
+  .node.input {
+  left: -5px;
+  top: 50%;
+  transform: translateY(calc(-50% - 4px)); /* move 4px upward */
+}
+
+.node.output {
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+}
+
