@@ -502,6 +502,114 @@ window.redo = redo;
 saveState();
 
 
+
+let selectedGates = [];
+let isSelecting = false;
+let startX, startY;
+
+const selectionBox = document.getElementById('selectionBox');
+
+document.addEventListener('mousedown', (e) => {
+  if (e.target.closest('#leftPanel') || e.target.closest('#rightPanel')) return;
+
+  isSelecting = true;
+  startX = e.pageX;
+  startY = e.pageY;
+
+  selectionBox.style.left = `${startX}px`;
+  selectionBox.style.top = `${startY}px`;
+  selectionBox.style.width = '0px';
+  selectionBox.style.height = '0px';
+  selectionBox.style.display = 'block';
+});
+
+document.addEventListener('mousemove', (e) => {
+  if (!isSelecting) return;
+
+  const currentX = e.pageX;
+  const currentY = e.pageY;
+
+  const x = Math.min(currentX, startX);
+  const y = Math.min(currentY, startY);
+  const width = Math.abs(currentX - startX);
+  const height = Math.abs(currentY - startY);
+
+  selectionBox.style.left = `${x}px`;
+  selectionBox.style.top = `${y}px`;
+  selectionBox.style.width = `${width}px`;
+  selectionBox.style.height = `${height}px`;
+});
+
+document.addEventListener('mouseup', () => {
+  if (!isSelecting) return;
+  isSelecting = false;
+
+  const boxRect = selectionBox.getBoundingClientRect();
+  selectionBox.style.display = 'none';
+
+  selectedGates = []; // clear previous selection
+
+  document.querySelectorAll('#canvas .gate').forEach(gate => {
+    const gateRect = gate.getBoundingClientRect();
+    const isInside =
+      gateRect.left >= boxRect.left &&
+      gateRect.right <= boxRect.right &&
+      gateRect.top >= boxRect.top &&
+      gateRect.bottom <= boxRect.bottom;
+
+    if (isInside) {
+      gate.classList.add('selected');
+      selectedGates.push(gate);
+    } else {
+      gate.classList.remove('selected');
+    }
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if ((e.key === 'Delete' || e.key === 'Backspace') && selectedGates.length) {
+    const deletedIds = selectedGates.map(g => parseInt(g.dataset.id));
+
+    // Remove wires from internal model and DOM
+    for (let i = wires.length - 1; i >= 0; i--) {
+      if (deletedIds.includes(wires[i].from.gateId) || deletedIds.includes(wires[i].to.gateId)) {
+        wires.splice(i, 1);
+      }
+    }
+
+    // Remove wire elements from DOM
+    document.querySelectorAll('#wireLayer line, #wireLayer path').forEach(wire => {
+      const from = parseInt(wire.dataset.fromGateId);
+      const to = parseInt(wire.dataset.toGateId);
+      if (deletedIds.includes(from) || deletedIds.includes(to)) {
+        wire.remove();
+      }
+    });
+
+    // Remove gates from internal model and DOM
+    deletedIds.forEach(id => {
+      const index = gates.findIndex(g => g.id === id);
+      if (index !== -1) {
+        gates.splice(index, 1);
+      }
+    });
+
+    selectedGates.forEach(gate => gate.remove());
+
+    // Clear selection and update state
+    selectedGates = [];
+    selectedGate = null;
+
+    redrawWires();
+    updateGateCount();
+    saveState();
+  }
+});
+
+
+
+
+
   // Download Verilog file
   function downloadVerilog() {
     const code = document.getElementById("verilogOutput").value;
